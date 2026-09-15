@@ -15,7 +15,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 def carica_db_ottimizzato():
     try:
         # Legge usando il TTL interno della connessione
-        df = conn.read(ttl="10m")
+        df = conn.read(worksheet="Database_tesserati2019", ttl="10m")
         
         if df is None or df.empty:
             return pd.DataFrame(columns=["Nominativo", "Tipo", "Ruolo", "Maglia", "GG", "MM", "AA", "FIGC", "Capitano", "Portiere"])
