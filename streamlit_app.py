@@ -44,14 +44,21 @@ def carica_db_ottimizzato():
 
 def salva_db(df):
     try:
-        conn.update(data=df)
-        # SVUOTA LA CACHE DOPO IL SALVATAGGIO
-        # Così i dati nuovi saranno subito visibili
+        conn.update(
+            worksheet="Database_tesserati2019",
+            data=df
+        )
+
+        # Svuota la cache dopo il salvataggio
         st.cache_data.clear()
+
         return True
+
     except Exception as e:
         st.error(f"Errore nel salvataggio: {e}")
         return False
+
+
 
 # --- LOGICA EXCEL (Invariata) ---
 def safe_write(ws, cell_coord, value):
